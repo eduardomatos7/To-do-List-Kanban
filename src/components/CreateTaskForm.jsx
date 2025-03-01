@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Task from '../entities/Task';
 import { Box, Button, Dialog, Flex, Text, TextArea, TextField, RadioGroup, Badge } from '@radix-ui/themes';
-
+import TaskContext from '../contexts/TaskContext';
 
 export default function CreateTaskForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState('todo');
     const [taskPriority, setTaskPriority] = useState('');
+    const { addTask } = useContext(TaskContext);
 
     const handleSave = (event) => {
         event.preventDefault();
         const newTask = new Task(Date.now(), title, description, status, taskPriority);
+        addTask(newTask);
         console.log('Task saved:', newTask);
         setTitle('');
         setDescription('');
         setStatus('');
         setTaskPriority('');
-
-        
     };
 
     const handleCancel = (e) => {
@@ -28,7 +28,6 @@ export default function CreateTaskForm() {
         setStatus('');
         setTaskPriority('');
     };
- 
 
     return (
         <Dialog.Root>
@@ -54,9 +53,7 @@ export default function CreateTaskForm() {
                                     autoFocus
                                     value={title}
                                     required
-                                    onInput={(e) => {setTitle(e.currentTarget.value);
-                                       
-                                    }}
+                                    onInput={(e) => setTitle(e.currentTarget.value)}
                                 />
                             </Box>
                             <Box>
@@ -75,7 +72,7 @@ export default function CreateTaskForm() {
                             <Flex>
                                 <Flex direction="column" mr='3rem'>
                                     <Text>Situação:</Text>
-                                    <RadioGroup.Root name='status' onValueChange={(value) => setStatus(value)}>
+                                    <RadioGroup.Root name='status' required onValueChange={(value) => setStatus(value)}>
                                         <RadioGroup.Item value='todo' ><Badge color='gray'>Pendente</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='doing'><Badge color='yellow'>Realizando</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='done'><Badge color='green'>Concluída</Badge></RadioGroup.Item>
@@ -83,10 +80,10 @@ export default function CreateTaskForm() {
                                 </Flex>
                                 <Flex direction="column">
                                     <Text>Prioridade:</Text>
-                                    <RadioGroup.Root name='priority' onValueChange={(value) => setTaskPriority(value)}>
+                                    <RadioGroup.Root name='priority' required onValueChange={(value) => setTaskPriority(value)}>
                                         <RadioGroup.Item value='low'> <Badge color='cyan'>Low</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='medium'><Badge color='orange'>Medium</Badge></RadioGroup.Item>
-                                        <RadioGroup.Item value='high'><Badge color='red'>High</Badge></RadioGroup.Item>
+                                        <RadioGroup.Item value='high' ><Badge color='red'>High</Badge></RadioGroup.Item>
                                     </RadioGroup.Root>
                                 </Flex>
                             </Flex>
