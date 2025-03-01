@@ -4,12 +4,14 @@ import './index.css'
 import "@radix-ui/themes/styles.css"; 
 import {Theme} from '@radix-ui/themes'
 import App from './App.jsx'
-import CreateTaskForm from './components/CreateTaskForm';
+import { TaskProvider } from './contexts/TaskContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Theme appearance='dark'>
-      <App />
+      <TaskProvider>
+        <App />
+      </TaskProvider>
     </Theme>
   </StrictMode>,
 )
