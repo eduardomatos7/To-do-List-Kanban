@@ -1,24 +1,23 @@
-import { Button } from '@radix-ui/themes'
-import { useState } from 'react'
 import CreateTaskForm from './components/CreateTaskForm'
+import Board from './components/Board'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div className="container">
+    <div className="container">
+      <div className="header">
         <h2>Kanban</h2>
         <div className="groupIB">
           <input placeholder='Buscar...'></input>
           <CreateTaskForm />
-          
         </div>
-        
-        
-        </div>
-        
-    </>
+      </div>
+      <div className="boards">
+        <Board titleTodo="Pendente" />
+        <Board titleTodo="Realizando" />
+        <Board titleTodo="Concluída" />
+      </div>
+    </div>
   )
 }
 
