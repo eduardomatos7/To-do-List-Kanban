@@ -9,18 +9,26 @@ export default function CreateTaskForm() {
     const [status, setStatus] = useState('');
     const [taskPriority, setTaskPriority] = useState('');
 
-    const handleSave = () => {
+    const handleSave = (event) => {
+        event.preventDefault();
         const newTask = new Task(Date.now(), title, description, status, taskPriority);
         console.log('Task saved:', newTask);
-        // Add logic to save the task
+        setTitle('');
+        setDescription('');
+        setStatus('');
+        setTaskPriority('');
+
+        
     };
 
-    const handleCancel = () => {
+    const handleCancel = (e) => {
+        e.preventDefault();
         setTitle('');
         setDescription('');
         setStatus('');
         setTaskPriority('');
     };
+ 
 
     return (
         <Dialog.Root>
@@ -33,7 +41,7 @@ export default function CreateTaskForm() {
                     <Dialog.Description>
                         Preencha os detalhes abaixo para criar uma nova tarefa.
                     </Dialog.Description>
-                    <form>
+                    <form onSubmit={handleSave} onReset={handleCancel}>
                         <Flex direction='column' gap='4' justify='center'>
                             <Box>
                                 <Box mb='2'>
@@ -45,7 +53,10 @@ export default function CreateTaskForm() {
                                     id='title'
                                     autoFocus
                                     value={title}
-                                    onInput={(e) => setTitle(e.currentTarget.value)}
+                                    required
+                                    onInput={(e) => {setTitle(e.currentTarget.value);
+                                       
+                                    }}
                                 />
                             </Box>
                             <Box>
@@ -57,37 +68,36 @@ export default function CreateTaskForm() {
                                     name="description"
                                     id="description"
                                     value={description}
+                                    required
                                     onInput={(e) => setDescription(e.currentTarget.value)}
                                 />
                             </Box>
                             <Flex>
                                 <Flex direction="column" mr='3rem'>
                                     <Text>Situação:</Text>
-                                    <RadioGroup.Root name='status' defaultValue='todo'>
-                                        <RadioGroup.Item value='todo'><Badge color='gray'>Pendente</Badge></RadioGroup.Item>
+                                    <RadioGroup.Root name='status' onValueChange={(value) => setStatus(value)}>
+                                        <RadioGroup.Item value='todo' ><Badge color='gray'>Pendente</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='doing'><Badge color='yellow'>Realizando</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='done'><Badge color='green'>Concluída</Badge></RadioGroup.Item>
                                     </RadioGroup.Root>
-                                    </Flex>
-                                    <Flex direction="column">
+                                </Flex>
+                                <Flex direction="column">
                                     <Text>Prioridade:</Text>
-                                    <RadioGroup.Root name='status' defaultValue='todo'>
+                                    <RadioGroup.Root name='priority' onValueChange={(value) => setTaskPriority(value)}>
                                         <RadioGroup.Item value='low'> <Badge color='cyan'>Low</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='medium'><Badge color='orange'>Medium</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='high'><Badge color='red'>High</Badge></RadioGroup.Item>
                                     </RadioGroup.Root>
-                                    </Flex>
-                                    </Flex>
-                                
-                                
-                            <Flex gap='4' justify='end'>
-                                <Dialog.Close>
-                                    <Button color='gray' variant='soft'>Cancelar</Button>
-                                </Dialog.Close>
-                                <Button type='submit' color='blue' variant='soft' onClick={handleSave}>Salvar</Button>
+                                </Flex>
                             </Flex>
-                            
-                            
+                            <Flex gap='2' justify='end'>
+                                <Dialog.Close>
+                                    <Button type='reset' color='gray' variant='soft'>Cancelar</Button>
+                                </Dialog.Close>
+                                <Dialog.Close>
+                                    <Button type='submit' color='blue' variant='soft'>Salvar</Button>
+                                </Dialog.Close>
+                            </Flex>
                         </Flex>
                     </form>
                 </Flex>
