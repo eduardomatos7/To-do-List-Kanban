@@ -99,30 +99,41 @@ button:hover {
   margin-bottom: 1rem;
 }
 
+.boardColumn h4 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.boardColumn p {
+  margin-top: .8rem;
+  font-size: .8rem;
+  font-weight: 300;
+}
+
 .boardColumn div {
   background-color: #444;
-  padding: 0.5rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
   cursor: pointer;
 }
 
-/*.DialogOverlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+
+.todo-bg{
+  background-color: #EC221F !important;
 }
 
-.DialogContent {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+.doing-bg{
+  background-color: #7678D1 !important;
+} 
+
+.done-bg {
+  background-color: #00A88B !important;
 }
 
-
-*/
+.namePriority {
+  font-size: 9rem;
+  border: 1px solid #fff;
+  width: 100%;
+  max-width: 3.5rem;
+  text-align: center;
+}

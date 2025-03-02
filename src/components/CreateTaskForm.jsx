@@ -72,7 +72,7 @@ export default function CreateTaskForm() {
                             <Flex>
                                 <Flex direction="column" mr='3rem'>
                                     <Text>Situação:</Text>
-                                    <RadioGroup.Root name='status' required onValueChange={(value) => setStatus(value)}>
+                                    <RadioGroup.Root name='status' onValueChange={(value) => setStatus(value)}>
                                         <RadioGroup.Item value='todo' ><Badge color='gray'>Pendente</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='doing'><Badge color='yellow'>Realizando</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='done'><Badge color='green'>Concluída</Badge></RadioGroup.Item>
@@ -80,7 +80,7 @@ export default function CreateTaskForm() {
                                 </Flex>
                                 <Flex direction="column">
                                     <Text>Prioridade:</Text>
-                                    <RadioGroup.Root name='priority' required onValueChange={(value) => setTaskPriority(value)}>
+                                    <RadioGroup.Root name='priority' onValueChange={(value) => setTaskPriority(value)}>
                                         <RadioGroup.Item value='low'> <Badge color='cyan'>Low</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='medium'><Badge color='orange'>Medium</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='high' ><Badge color='red'>High</Badge></RadioGroup.Item>
