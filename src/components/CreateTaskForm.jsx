@@ -6,7 +6,7 @@ import TaskContext from '../contexts/TaskContext';
 export default function CreateTaskForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [status, setStatus] = useState('todo');
+    const [status, setStatus] = useState('');
     const [taskPriority, setTaskPriority] = useState('');
     const { addTask } = useContext(TaskContext);
 
@@ -19,6 +19,8 @@ export default function CreateTaskForm() {
         setDescription('');
         setStatus('');
         setTaskPriority('');
+        
+        
     };
 
     const handleCancel = (e) => {
@@ -65,14 +67,13 @@ export default function CreateTaskForm() {
                                     name="description"
                                     id="description"
                                     value={description}
-                                    required
                                     onInput={(e) => setDescription(e.currentTarget.value)}
                                 />
                             </Box>
                             <Flex>
                                 <Flex direction="column" mr='3rem'>
                                     <Text>Situação:</Text>
-                                    <RadioGroup.Root name='status' onValueChange={(value) => setStatus(value)}>
+                                    <RadioGroup.Root name='status' onValueChange={(value) => setStatus(value)} required>
                                         <RadioGroup.Item value='todo' ><Badge color='gray'>Pendente</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='doing'><Badge color='yellow'>Realizando</Badge></RadioGroup.Item>
                                         <RadioGroup.Item value='done'><Badge color='green'>Concluída</Badge></RadioGroup.Item>
@@ -91,9 +92,17 @@ export default function CreateTaskForm() {
                                 <Dialog.Close>
                                     <Button type='reset' color='gray' variant='soft'>Cancelar</Button>
                                 </Dialog.Close>
-                                <Dialog.Close>
+                                { 
+                                (title && status) 
+                                    ? 
+                                    <Dialog.Close>
+                                        <Button type='submit' color='blue' variant='soft'>Salvar</Button>
+                                    </Dialog.Close> 
+                                    : 
                                     <Button type='submit' color='blue' variant='soft'>Salvar</Button>
-                                </Dialog.Close>
+                                }
+                                
+                                
                             </Flex>
                         </Flex>
                     </form>
