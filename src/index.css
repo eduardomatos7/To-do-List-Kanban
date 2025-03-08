@@ -137,3 +137,40 @@ button:hover {
   max-width: 3.5rem;
   text-align: center;
 }
+
+
+/* PARTE DE EDIÇÃO DA TAREFA */
+
+.listTaskContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 3rem;
+  padding: 3rem 0 2rem;
+  align-items: center;
+}
+
+.listTaskActions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.listTaskDescription {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  margin: 0 3rem;
+  padding: 0;
+}
+
+.listTaskDescription h3 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.listTaskDescription .textarea {
+  min-height: 7rem;
+  border: 1.5px solid gray;
+}
