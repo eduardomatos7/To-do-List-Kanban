@@ -8,7 +8,7 @@ export const ListTask = () => {
   const { tasks, removeTask } = useContext(TaskContext);
   const { id } = useParams();
   const navigate = useNavigate();
-  const taskListed = tasks.find(task => task.id === parseInt(id));
+  const taskListed = tasks.find(task => task.id === id);
   const [title, setTitle] = useState(taskListed?.title || '');
   const [description, setDescription] = useState(taskListed?.description || '');
   const [status, setStatus] = useState(taskListed?.status || 'todo');
@@ -22,7 +22,7 @@ export const ListTask = () => {
       </div>
       <div className="listTaskActions">
         <DropDown />
-        <Button variant="solid" color="red" size='2' onClick={() => {removeTask(parseInt(id), navigate, taskListed)}}>Deletar atividade</Button>
+        <Button variant="solid" color="red" size='2' onClick={() => {removeTask(id, navigate)}}>Deletar atividade</Button>
         <Button variant="surface" color="gray" size='2'>Editar informações</Button>
       </div>
 

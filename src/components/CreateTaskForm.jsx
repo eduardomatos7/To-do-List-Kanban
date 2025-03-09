@@ -3,6 +3,7 @@ import Task from '../entities/Task';
 import { Box, Button, Dialog, Flex, Text, TextArea, TextField, RadioGroup, Badge } from '@radix-ui/themes';
 import TaskContext from '../contexts/TaskContext';
 
+
 export default function CreateTaskForm() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -14,7 +15,6 @@ export default function CreateTaskForm() {
         event.preventDefault();
         const newTask = new Task(Date.now(), title, description, status, taskPriority);
         addTask(newTask);
-        console.log('Task saved:', newTask);
         setTitle('');
         setDescription('');
         setStatus('');
@@ -99,7 +99,7 @@ export default function CreateTaskForm() {
                                         <Button type='submit' color='blue' variant='soft'>Salvar</Button>
                                     </Dialog.Close> 
                                     : 
-                                    <Button type='submit' color='blue' variant='soft'>Salvar</Button>
+                                    <Button type='submit' color='blue' variant='soft' >Salvar</Button>
                                 }
                                 
                                 
