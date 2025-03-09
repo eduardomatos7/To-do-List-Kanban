@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 EditTask.test.jsx
-EditTask.jsx
 ErrorBoundary.jsx
 db.json
 
