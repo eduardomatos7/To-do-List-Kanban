@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "id": "1741530901787",
+      "title": "Audio recording",
+      "description": "Interface for when recording a new audio note.",
+      "status": "done",
+      "taskPriority": "low"
+    },
+    {
+      "id": "1741532129382",
+      "title": "Audio recording",
+      "description": "Interface for when recording a new audio note",
+      "status": "todo",
+      "taskPriority": "medium"
+    },
+    {
+      "id": "1741554458831",
+      "title": "Jogar o lixo",
+      "description": "",
+      "status": "doing",
+      "taskPriority": "high"
+    },
+    {
+      "id": "1741561420852",
+      "title": "naipe naipe",
+      "description": "tchutchurutchuuu e naipe",
+      "status": "doing",
+      "taskPriority": "high"
+    },
+    {
+      "id": "1741566508177",
+      "title": "Aplicativo MedicAp.",
+      "description": "Concluir desenvolvimento do aplicativo de engenharia de software.",
+      "status": "doing",
+      "taskPriority": "high"
+    }
+  ]
+}

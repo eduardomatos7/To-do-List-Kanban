@@ -11,9 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-EditTask.test.jsx
 ErrorBoundary.jsx
-db.json
 EditTask.jsx
 
 # Editor directories and files
