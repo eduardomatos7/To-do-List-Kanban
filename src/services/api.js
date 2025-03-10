@@ -1,9 +1,9 @@
+
 export const getData = async () => {
     const response = await fetch('http://localhost:3000/tasks')
     const data = await response.json()
     return data
 }
-
 export const postData = async (task) => {
     await fetch('http://localhost:3000/tasks', {
         method: 'POST',
@@ -21,11 +21,15 @@ export const deleteData = async (id) => {
 }
 
 export const putData = async (task) => {
-    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+    const taskUpdate = await fetch(`http://localhost:3000/tasks/${task.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-    })}
+        body: JSON.stringify(task)
+    })
+    
+    return taskUpdate.json()
+}
 
 
