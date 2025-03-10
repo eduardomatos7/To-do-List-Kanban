@@ -3,34 +3,7 @@ import Task from '../entities/Task';
 import { Box, Button, Dialog, Flex, Text, TextArea, TextField, RadioGroup, Badge } from '@radix-ui/themes';
 import TaskContext from '../contexts/TaskContext';
 
-
-export default function CreateTaskForm() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [status, setStatus] = useState('');
-    const [taskPriority, setTaskPriority] = useState('');
-    const { addTask } = useContext(TaskContext);
-
-    const handleSave = (event) => {
-        event.preventDefault();
-        const newTask = new Task(Date.now(), title, description, status, taskPriority);
-        addTask(newTask);
-        setTitle('');
-        setDescription('');
-        setStatus('');
-        setTaskPriority('');
-        
-        
-    };
-
-    const handleCancel = (e) => {
-        e.preventDefault();
-        setTitle('');
-        setDescription('');
-        setStatus('');
-        setTaskPriority('');
-    };
-
+function CreateTaskFormContent({ title, setTitle, description, setDescription, status, setStatus, taskPriority, setTaskPriority, handleSave, handleCancel }) {
     return (
         <Dialog.Root>
             <Dialog.Trigger>
@@ -101,13 +74,52 @@ export default function CreateTaskForm() {
                                     : 
                                     <Button type='submit' color='blue' variant='soft' >Salvar</Button>
                                 }
-                                
-                                
                             </Flex>
                         </Flex>
                     </form>
                 </Flex>
             </Dialog.Content>
         </Dialog.Root>
+    );
+}
+
+export default function CreateTaskForm() {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [status, setStatus] = useState('');
+    const [taskPriority, setTaskPriority] = useState('');
+    const { addTask } = useContext(TaskContext);
+
+    const handleSave = (event) => {
+        event.preventDefault();
+        const newTask = new Task(Date.now(), title, description, status, taskPriority);
+        addTask(newTask);
+        setTitle('');
+        setDescription('');
+        setStatus('');
+        setTaskPriority('');
+    };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setTitle('');
+        setDescription('');
+        setStatus('');
+        setTaskPriority('');
+    };
+
+    return (
+        <CreateTaskFormContent
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+            status={status}
+            setStatus={setStatus}
+            taskPriority={taskPriority}
+            setTaskPriority={setTaskPriority}
+            handleSave={handleSave}
+            handleCancel={handleCancel}
+        />
     );
 }

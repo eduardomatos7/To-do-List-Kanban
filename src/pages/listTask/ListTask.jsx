@@ -3,6 +3,9 @@ import React, { useContext, useState } from "react";
 import TaskContext  from "../../contexts/TaskContext";
 import DropDown from "../../components/DropDown";
 import { Button, TextArea } from "@radix-ui/themes";
+import TaskFormEdit from "../../components/TaskFormEdit";
+import { TaskProvider } from "../../contexts/TaskContext";
+
 
 export const ListTask = () => {
   const { tasks, removeTask } = useContext(TaskContext);
@@ -16,6 +19,7 @@ export const ListTask = () => {
 
   return (
     <>
+    <TaskProvider>
     <div className="listTaskContainer">
       <div className="listTaskTitle">
         <h1>{title}</h1>
@@ -23,7 +27,16 @@ export const ListTask = () => {
       <div className="listTaskActions">
         <DropDown />
         <Button variant="solid" color="red" size='2' onClick={() => {removeTask(id, navigate)}}>Deletar atividade</Button>
-        <Button variant="surface" color="gray" size='2'>Editar informações</Button>
+
+        <TaskFormEdit
+        title={title}
+        setTitle={setTitle}
+        description={description}
+        setDescription={setDescription}
+        status={status}
+        setStatus={setStatus}
+        taskPriority={taskPriority}
+        setTaskPriority={setTaskPriority}/>
       </div>
 
     </div>
@@ -31,6 +44,7 @@ export const ListTask = () => {
       <h3>Descrição</h3>
       <TextArea disabled className="textarea" value={description}/>
     </div>
+    </TaskProvider>
     </>
   );
 }
