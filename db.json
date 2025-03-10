@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "id": "1741530901787",
+      "id": "1",
       "title": "Audio recording",
       "description": "Interface for when recording a new audio note.",
       "status": "done",
@@ -10,16 +10,9 @@
     {
       "id": "1741532129382",
       "title": "Audio recording",
-      "description": "Interface for when recording a new audio note",
+      "description": "Interface for when recording a new audio note.",
       "status": "todo",
       "taskPriority": "medium"
-    },
-    {
-      "id": "1741554458831",
-      "title": "Jogar o lixo",
-      "description": "",
-      "status": "doing",
-      "taskPriority": "high"
     },
     {
       "id": "1741561420852",

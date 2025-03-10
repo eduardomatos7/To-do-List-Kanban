@@ -1,25 +1,32 @@
 import { useParams, useNavigate } from "react-router-dom";
-import React, { useContext, useState } from "react";
-import TaskContext  from "../../contexts/TaskContext";
+import React, { useContext, useState, useEffect } from "react";
+import TaskContext from "../../contexts/TaskContext";
 import DropDown from "../../components/DropDown";
 import { Button, TextArea } from "@radix-ui/themes";
 import TaskFormEdit from "../../components/TaskFormEdit";
-import { TaskProvider } from "../../contexts/TaskContext";
-
 
 export const ListTask = () => {
   const { tasks, removeTask } = useContext(TaskContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const taskListed = tasks.find(task => task.id === id);
-  const [title, setTitle] = useState(taskListed?.title || '');
+
+  const [title, setTitle] = useState(taskListed?.title || '' );
   const [description, setDescription] = useState(taskListed?.description || '');
-  const [status, setStatus] = useState(taskListed?.status || 'todo');
-  const [taskPriority, setTaskPriority] = useState(taskListed?.taskPriority || '');
+  const [status, setStatus] = useState(taskListed?.status || '');
+  const [taskPriority, setTaskPriority] = useState(taskListed?.taskPriority);
+
+  useEffect(() => {
+    if (taskListed) {
+      setTitle(taskListed.title);
+      setDescription(taskListed.description);
+      setStatus(taskListed.status);
+      setTaskPriority(taskListed.taskPriority);
+    }
+  }, [tasks, id]);
 
   return (
     <>
-    <TaskProvider>
     <div className="listTaskContainer">
       <div className="listTaskTitle">
         <h1>{title}</h1>
@@ -44,7 +51,6 @@ export const ListTask = () => {
       <h3>Descrição</h3>
       <TextArea disabled className="textarea" value={description}/>
     </div>
-    </TaskProvider>
     </>
   );
 }

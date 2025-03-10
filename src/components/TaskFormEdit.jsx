@@ -9,7 +9,7 @@ function TaskFormEdit({ title, setTitle, description, setDescription, status, se
   const [tempDescription, setTempDescription] = useState(description);
   const [tempStatus, setTempStatus] = useState(status);
   const [tempTaskPriority, setTempTaskPriority] = useState(taskPriority);
-  const { updateTask, setTasks, tasks } = useContext(TaskContext)
+  const { updateTask } = useContext(TaskContext)
   const { id } = useParams()
   const navigate = useNavigate()
 
