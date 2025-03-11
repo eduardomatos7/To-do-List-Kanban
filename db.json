@@ -11,20 +11,20 @@
       "id": "1741532129382",
       "title": "Audio recording",
       "description": "Interface for when recording a new audio note.",
-      "status": "todo",
-      "taskPriority": "medium"
+      "status": "done",
+      "taskPriority": "high"
     },
     {
       "id": "1741561420852",
       "title": "naipe naipe",
       "description": "tchutchurutchuuu e naipe",
-      "status": "doing",
+      "status": "todo",
       "taskPriority": "high"
     },
     {
-      "id": "1741566508177",
-      "title": "Aplicativo MedicAp.",
-      "description": "Concluir desenvolvimento do aplicativo de engenharia de software.",
+      "id": "1741618004010",
+      "title": "Desenvolvimento de App",
+      "description": "Desenvolvimento de um app para gestão de consumo usando React native.",
       "status": "doing",
       "taskPriority": "high"
     }
