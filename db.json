@@ -1,13 +1,6 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Audio recording",
-      "description": "Interface for when recording a new audio note.",
-      "status": "done",
-      "taskPriority": "low"
-    },
-    {
       "id": "1741532129382",
       "title": "Audio recording",
       "description": "Interface for when recording a new audio note.",
