@@ -13,10 +13,12 @@ function App() {
             <CreateTaskForm />
           </div>
         </div>
-        <div className="boards">
-          <Board titleTodo="Pendente" />
-          <Board titleTodo="Realizando" />
-          <Board titleTodo="Concluída" />
+        <div className='full-w-boards'>
+          <div className="boards">
+            <Board titleTodo="Pendente" />
+            <Board titleTodo="Realizando" />
+            <Board titleTodo="Concluída" />
+          </div>
         </div>
       </div>
     </>

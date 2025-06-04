@@ -32,7 +32,7 @@ function TaskFormEdit({ title, setTitle, description, setDescription, status, se
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Button variant="surface" color="gray" size='2'>Editar informações</Button>
+        <Button variant="surface" color="gray" size='2' style={{ width: "10rem"}}>Editar informações</Button>
       </Dialog.Trigger>
       <Dialog.Content maxWidth='28rem'>
         <Flex gap='4' direction='column' width='100%'>

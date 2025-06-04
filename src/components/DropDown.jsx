@@ -28,7 +28,7 @@ export default function DropDown () {
     variant='outline'
     color='gray' 
     size='2' 
-    style={{width: '10rem', display: 'flex', justifyContent: 'space-between'}}>
+    style={{maxwidth: "10rem", display: 'flex', justifyContent: 'space-between'}}>
 			{statusMap[status]}
 			<DropdownMenu.TriggerIcon />
 		</Button >

@@ -33,7 +33,7 @@ export const ListTask = () => {
       </div>
       <div className="listTaskActions">
         <DropDown />
-        <Button variant="solid" color="red" size='2' onClick={() => {removeTask(id, navigate)}}>Deletar atividade</Button>
+        <Button variant="solid" color="red"  style={{maxwidth: "10rem",}} size='2' onClick={() => {removeTask(id, navigate)}}>Deletar atividade</Button>
 
         <TaskFormEdit
         title={title}
@@ -49,7 +49,7 @@ export const ListTask = () => {
     </div>
     <div className="listTaskDescription">
       <h3>Descrição</h3>
-      <TextArea disabled className="textarea" value={description}/>
+      <TextArea disabled className="textarea" rows="10"value={description}/>
     </div>
     </>
   );

@@ -1,11 +1,11 @@
 
 export const getData = async () => {
-    const response = await fetch('http://localhost:3000/tasks')
+    const response = await fetch('http://localhost:3001/tasks')
     const data = await response.json()
     return data
 }
 export const postData = async (task) => {
-    await fetch('http://localhost:3000/tasks', {
+    await fetch('http://localhost:3001/tasks', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -15,13 +15,13 @@ export const postData = async (task) => {
 }
 
 export const deleteData = async (id) => {
-    await fetch(`http://localhost:3000/tasks/${id}`, {
+    await fetch(`http://localhost:3001/tasks/${id}`, {
         method: 'DELETE'
     });
 }
 
 export const putData = async (task) => {
-    const taskUpdate = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+    const taskUpdate = await fetch(`http://localhost:3001/tasks/${task.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
