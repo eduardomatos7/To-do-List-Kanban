@@ -2,9 +2,11 @@
 export const getData = async () => {
     const response = await fetch('http://localhost:3001/tasks')
     const data = await response.json()
+    console.log(data)
     return data
 }
 export const postData = async (task) => {
+    await fetch('http://localhost:3001/tasks', {
     await fetch('http://localhost:3001/tasks', {
         method: 'POST',
         headers: {
@@ -12,6 +14,7 @@ export const postData = async (task) => {
         },
         body: JSON.stringify(task)
     })
+
 }
 
 export const deleteData = async (id) => {
