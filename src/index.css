@@ -90,6 +90,7 @@ button:hover {
 
 .boards {
   display: flex;
+  min-width: 71%;
   max-width: 30rem;
   flex-direction: column;
   align-items: center;
@@ -235,12 +236,14 @@ button:hover {
   .boards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    max-width: max-content;
     margin: 0 3rem;
+    max-width: 100%;
+    width: 100%;
     gap: 2rem;
   }
   .boardColumn {
     height: 70vh;
+    width: 100%;
   }
   .groupIB {
     display: flex;
