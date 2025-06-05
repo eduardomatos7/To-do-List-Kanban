@@ -1,15 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Task from "../entities/Task";
 
 const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-  const [tasks, setTasks] = useState(
+  const [taskss, setTaskss] = useState(
     localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : []
   );
+  const [searchQuery, setSearchQuery] = useState("")
+  
+  const tasks = taskss.filter((task) => task.title.includes(searchQuery))
+
 
   const addTask = async (task) => {
-    setTasks((prevTasks) => {
+    setTaskss((prevTasks) => {
       const arrayTasks = [...prevTasks, task];
       localStorage.setItem("tasks", JSON.stringify(arrayTasks));
       return arrayTasks;
@@ -18,7 +22,7 @@ export const TaskProvider = ({ children }) => {
 
   const removeTask = async (id, navigate) => {
     if (confirm("Deseja realmente excluir essa tarefa?")) {
-      setTasks((prevTasks) =>
+      setTaskss((prevTasks) =>
         {
       const tasksCurrent = prevTasks.filter((taskListed) => taskListed.id !== id)
       localStorage.setItem("tasks", JSON.stringify(tasksCurrent))
@@ -37,16 +41,19 @@ export const TaskProvider = ({ children }) => {
       task.status,
       task.taskPriority
     );
-    setTasks((prevTasks) => {
+    setTaskss((prevTasks) => {
       const updatedTasks = prevTasks.map((t) => (t.id === id ? updatedTask : t));
       localStorage.setItem("tasks", JSON.stringify(updatedTasks));
       return updatedTasks;
     });
   };
 
+
+
+
   return (
     <TaskContext.Provider
-      value={{ tasks, addTask, removeTask, updateTask, setTasks }}
+      value={{ tasks, addTask, removeTask, updateTask, setTaskss, setSearchQuery, searchQuery }}
     >
       {children}
     </TaskContext.Provider>

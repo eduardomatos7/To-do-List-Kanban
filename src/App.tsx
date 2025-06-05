@@ -1,18 +1,12 @@
-import CreateTaskForm from './components/CreateTaskForm'
 import Board from './components/Board'
+import Header from './components/Header'
 
 function App() {
 
   return (
     <>
       <div className="container">
-        <div className="header">
-          <h2>Kanban</h2>
-          <div className="groupIB">
-            <input placeholder='Buscar...'></input>
-            <CreateTaskForm />
-          </div>
-        </div>
+        <Header/>
         <div className='full-w-boards'>
           <div className="boards">
             <Board titleTodo="Pendente" />

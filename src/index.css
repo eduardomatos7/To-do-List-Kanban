@@ -254,6 +254,7 @@ button:hover {
     & input {
       background-color: transparent;
       min-width: auto;
+      width: auto;
       max-width: auto;
     }
 
