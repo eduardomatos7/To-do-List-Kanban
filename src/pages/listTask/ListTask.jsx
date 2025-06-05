@@ -27,30 +27,53 @@ export const ListTask = () => {
 
   return (
     <>
-    <div className="listTaskContainer">
-      <div className="listTaskTitle">
-        <h1>{title}</h1>
-      </div>
-      <div className="listTaskActions">
-        <DropDown />
-        <Button variant="solid" color="red"  style={{maxwidth: "10rem",}} size='2' onClick={() => {removeTask(id, navigate)}}>Deletar atividade</Button>
+      <div className="listTaskContainer">
+        <div className="listTaskTitle">
+          <h1>{title}</h1>
+        </div>
+        <div className="listTaskActions">
+          <DropDown />
+          <TaskFormEdit
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+            status={status}
+            setStatus={setStatus}
+            taskPriority={taskPriority}
+            setTaskPriority={setTaskPriority}
+          />
+          <Button
+            variant="solid"
+            color="red"
+            style={{ maxwidth: "10rem" }}
+            size="2"
+            onClick={() => {
+              removeTask(id, navigate);
+            }}
+          >
+            Deletar atividade
+          </Button>
 
-        <TaskFormEdit
-        title={title}
-        setTitle={setTitle}
-        description={description}
-        setDescription={setDescription}
-        status={status}
-        setStatus={setStatus}
-        taskPriority={taskPriority}
-        setTaskPriority={setTaskPriority}/>
+          <Button
+              variant="surface"
+              color="blue"
+              style={{cursor:"pointer", maxwidth: "10rem"}}
+              size="2"
+              onClick={() => {
+                navigate && navigate("/");
+              }}
+              >
+              Concluir
+            </Button>
+  
+        </div>
       </div>
-
-    </div>
-    <div className="listTaskDescription">
-      <h3>Descrição</h3>
-      <TextArea disabled className="textarea" rows="10"value={description}/>
-    </div>
+      <div className="listTaskDescription">
+        <h3>Descrição</h3>
+        <TextArea disabled className="textarea" rows="10" value={description} />
+      </div>
+        
     </>
   );
-}
+};

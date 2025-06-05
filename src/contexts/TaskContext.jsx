@@ -1,41 +1,56 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import Task from "../entities/Task";
-import { getData, postData, deleteData, putData } from "../services/api";
 
 const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-    
-    const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(
+    localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : []
+  );
 
-    useEffect(() => {
-        getData().then((data) => 
-            {setTasks(data.map(task => new Task(task.id, task.title, task.description, task.status, task.taskPriority)));});
-    }, [])
+  const addTask = async (task) => {
+    setTasks((prevTasks) => {
+      const arrayTasks = [...prevTasks, task];
+      localStorage.setItem("tasks", JSON.stringify(arrayTasks));
+      return arrayTasks;
+    });
+  };
 
-    const addTask = async (task) => {
-        await postData(task);
-        setTasks(prevTasks => [...prevTasks, task]);
-    };
-
-    const removeTask = async (id, navigate) => {
-        if (confirm('Deseja realmente excluir essa tarefa?')) {
-            await deleteData(id);
-            setTasks(prevTasks => prevTasks.filter((taskListed) => taskListed.id !== id));
-            (navigate) && navigate('/');
-        }
+  const removeTask = async (id, navigate) => {
+    if (confirm("Deseja realmente excluir essa tarefa?")) {
+      setTasks((prevTasks) =>
+        {
+      const tasksCurrent = prevTasks.filter((taskListed) => taskListed.id !== id)
+      localStorage.setItem("tasks", JSON.stringify(tasksCurrent))
+      return tasksCurrent
     }
-
-    const updateTask = async (id, task) => {
-        const updatedTask = new Task(task.id, task.title, task.description, task.status, task.taskPriority);
-        await putData(updatedTask);
-        setTasks(prevTasks => prevTasks.map(t => t.id === id ? updatedTask : t));
+      );
+      navigate && navigate("/");
     }
+  };
 
-    return (
-        <TaskContext.Provider value={{ tasks, addTask, removeTask, updateTask, setTasks }}>
-            {children}
-        </TaskContext.Provider>
-    ) };
+  const updateTask = async (id, task) => {
+    const updatedTask = new Task(
+      task.id,
+      task.title,
+      task.description,
+      task.status,
+      task.taskPriority
+    );
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((t) => (t.id === id ? updatedTask : t));
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  };
+
+  return (
+    <TaskContext.Provider
+      value={{ tasks, addTask, removeTask, updateTask, setTasks }}
+    >
+      {children}
+    </TaskContext.Provider>
+  );
+};
 
 export default TaskContext;
